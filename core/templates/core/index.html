@@ -16,7 +16,7 @@
         {% if user.employee.empresa %}
         <a href="">Editar Empresa</a>
         {% else %}
-        <a href="">Criar Empresa</a>
+        <a href="{% url 'companies:new' %} ">Criar Empresa</a>
         {% endif %}
 
 
