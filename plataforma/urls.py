@@ -7,11 +7,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
-    path('employees', include('apps.employees.urls', namespace='employees')),
-    path('companies', include('apps.companies.urls', namespace='companies')),
-    path('departments', include('apps.departments.urls', namespace='departments')),
-    path('documents', include('apps.departments.urls', namespace='documents')),
-    path('overtime', include('apps.overtime.urls', namespace='overtime')),
+    path('employees/', include('apps.employees.urls', namespace='employees')),
+    path('companies/', include('apps.companies.urls', namespace='companies')),
+    path('departments/', include('apps.departments.urls', namespace='departments')),
+    path('documents/', include('apps.departments.urls', namespace='documents')),
+    path('overtime/', include('apps.overtime.urls', namespace='overtime')),
     path('accounts/', include('django.contrib.auth.urls')),
 
 ]

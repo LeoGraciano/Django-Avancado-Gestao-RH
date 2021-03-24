@@ -7,14 +7,16 @@
         One of tree columns
     </div>
     <div class="col-sm">
-        {{user.employee.name}}
+        <p>{{user.employee.name}}</p>
+        <p><a href="{% url 'employees:list' %}">Gerenciar Funcionários</a></p>
+        <p><a href="{% url 'departments:list' %}">Gerenciar Departamentos</a></p>
     </div>
     <div class="col-sm">
         <a href="{% url 'logout' %}">Logout</a>
 
 
-        {% if user.employee.empresa %}
-        <a href="">Editar Empresa</a>
+        {% if user.employee.company %}
+        <a href="{% url 'companies:edit' user.employee.company.pk %} ">Editar Empresa</a>
         {% else %}
         <a href="{% url 'companies:new' %} ">Criar Empresa</a>
         {% endif %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% for department in object_list %}
+
+<p><a href="{% url 'departments:update' department.pk %} ">{{department}}</a>
+    <a href="{% url 'departments:delete' department.pk %} " class="btn btn-danger">Excluir</a></p>
+
+
+
+
+{% endfor %}
+
+
+<a href="{% url 'departments:new' %} " class="btn btn-info">Criar Departamento</a>
+
+{% endblock content %}
