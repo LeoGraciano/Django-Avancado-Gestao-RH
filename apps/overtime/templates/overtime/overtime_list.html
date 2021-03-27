@@ -3,19 +3,26 @@
 
 {% block content %}
 
+{% if object_list %}
 {% for overtime in object_list %}
-
 <p>
-    {{overtime}}
-    <!-- <a href="{% url 'overtime:update' overtime.pk %} ">{{overtime}}</a> -->
-    <!-- <a href="{% url 'overtime:delete' overtime.pk %} " class="btn btn-danger">Excluir</a> -->
+    <a href="{% url 'overtime:update' overtime.pk %} ">{{overtime}}</a>
+
+
+    <a href="{% url 'overtime:delete' overtime.pk %}" class="btn btn-danger">Deletar</a>
 </p>
-
-
-
-
 {% endfor %}
-<!-- <a href="{% url 'overtime:list' %} " class="btn btn-info">Lança Banco</a> -->
+{% else %}
+Não existe Banco de Horas no Sistema
+{% endif %}
+
+<a href="{% url 'overtime:new' %}" class="btn btn-success">Inserir</a>
+    
+
+
+
+
+
 
 
 
