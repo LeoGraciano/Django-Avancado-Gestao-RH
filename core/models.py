@@ -13,6 +13,7 @@ class BaseModelField(models.Model):
         editable=False,
         db_column='code_parameter'
     )
+
     """Classe de composição para modelos que utilizaram os
         campos created_at, updated_at
     """

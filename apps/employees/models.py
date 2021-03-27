@@ -9,6 +9,7 @@ from django.urls import reverse
 
 
 class Employee(BaseModelField):
+
     name = models.CharField('Nome', max_length=100)
     user = models.OneToOneField(
         User, on_delete=models.PROTECT, verbose_name='Usuário')

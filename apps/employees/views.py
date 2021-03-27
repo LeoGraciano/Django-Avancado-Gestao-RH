@@ -23,7 +23,8 @@ class EmployeeListView(ListView):
     # get_queryset edita os items que vem do model Employee.objects.all()
     def get_queryset(self):
         company = self.request.user.employee.company
-        queryset = Employee.objects.filter(company=company)
+        queryset = Employee.objects.filter(
+            company=company).exclude(user__is_superuser=True)
         return queryset
 
     def get_context_data(self, **kwargs):

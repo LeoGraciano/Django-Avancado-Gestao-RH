@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% for overtime in object_list %}
+
+<p>
+    {{overtime}}
+    <!-- <a href="{% url 'overtime:update' overtime.pk %} ">{{overtime}}</a> -->
+    <!-- <a href="{% url 'overtime:delete' overtime.pk %} " class="btn btn-danger">Excluir</a> -->
+</p>
+
+
+
+
+{% endfor %}
+<!-- <a href="{% url 'overtime:list' %} " class="btn btn-info">Lança Banco</a> -->
+
+
+
+{% endblock content %}

@@ -10,8 +10,7 @@ urlpatterns = [
     path('employees/', include('apps.employees.urls', namespace='employees')),
     path('companies/', include('apps.companies.urls', namespace='companies')),
     path('departments/', include('apps.departments.urls', namespace='departments')),
-    path('documents/', include('apps.departments.urls', namespace='documents')),
+    path('documents/', include('apps.documents.urls', namespace='documents')),
     path('overtime/', include('apps.overtime.urls', namespace='overtime')),
     path('accounts/', include('django.contrib.auth.urls')),
-
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
