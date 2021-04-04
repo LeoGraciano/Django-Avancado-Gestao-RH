@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.aggregates import Sum
 from core.models import BaseModelField
 from django.contrib.auth.models import User
 from apps.departments.models import Department
@@ -22,6 +23,10 @@ class Employee(BaseModelField):
 
     def __str__(self):
         return self.name
+
+    @property
+    def overtime_total(self):
+        return self.overtime_set.aggregate(Sum('hours'))['hours__sum']
 
     class meta:
         ordering = 'name'

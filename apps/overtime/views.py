@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -27,6 +27,24 @@ class OverTimeUpdateView(UpdateView):
         if hasattr(self, 'object'):
             kwargs.update({'instance': self.object})
             kwargs.update({'employee': self.request.user.employee})
+
+        return kwargs
+
+
+class OverTimeEmployeeUpdateView(UpdateView):
+    model = OverTime
+    form_class = OverTimeForm
+    # success_url = reverse_lazy('overtime:list')
+
+    def get_success_url(self):
+        return reverse_lazy('employees:update', args=[self.object.employee.pk])
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if hasattr(self, 'object'):
+            kwargs.update({'instance': self.object})
+            kwargs.update({'employee': self.request.user.employee})
+
         return kwargs
 
 
