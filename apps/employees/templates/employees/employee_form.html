@@ -7,19 +7,40 @@
     {{ form|bootstrap }}
     <button type="submit">Salvar</button>
 </form>
+<br>
+<br>
 
+<h2>Documentos</h2>
+<ul>
+
+    {% for document in object.document_set.all %}
+    <p>
+        <a href="{{document.file.url}}">
+            <li>{{document}}</li>
+        </a>
+    </p>
+    {% endfor %}
+</ul>
+<br>
 {% if object.pk %}
-<a href="{% url 'documents:new' object.pk %} " class="btn btn-success">Anexar Arquivo</a>
+<a href="{% url 'documents:new' object.pk %} " class="btn btn-success">
+    Anexar Arquivo
+</a>
 {% endif %}
+<br>
+<br>
 
 
-{% for document in object.document_set.all %}
-<p>
-    <a href="{{document.file.url}}">
-        {{document}}
-    </a>
-</p>
-{% endfor %}
+<h2>Banco de Horas</h2>
+<ul>
+    {% for time in object.overtime_set.all %}
+    <p>
+            <li>{{time.reason}} | {{time.hours}}</li>
+
+    </p>
+    {% endfor %}
+</ul>
+<br>
 
 
 {% endblock content %}
