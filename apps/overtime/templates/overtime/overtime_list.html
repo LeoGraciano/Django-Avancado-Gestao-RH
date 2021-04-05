@@ -15,9 +15,14 @@
 {% else %}
 Não existe Banco de Horas no Sistema
 {% endif %}
+<p>
+    <a href="{% url 'overtime:new' %}" class="btn btn-success">Inserir</a>
+    <a href="{% url 'reports:export_csv_overtime' %}" class="btn btn-info">Exporta CSV</a>
+    <a href="{% url 'reports:export_excel_overtime' %}" class="btn btn-info">Exporta Excel</a>
+</p>
 
-<a href="{% url 'overtime:new' %}" class="btn btn-success">Inserir</a>
-    
+
+
 
 
 

@@ -1,3 +1,7 @@
+import xlwt
+from apps.overtime.models import OverTime
+import csv
+from django.http import HttpResponse
 from django.http.response import HttpResponse
 from django.views.generic.base import View
 from django.shortcuts import render
@@ -80,3 +84,70 @@ class PDF(View):
             'request': request,
         }
         return Render.render('employees/report_employees.html', params, 'my_file')
+
+
+class OverTimeExportCSV(View):
+    def get(self, request):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="relatório.csv"'
+
+        overtime_rest = OverTime.objects.filter(is_hours=True)
+
+        writer = csv.writer(response)
+        writer.writerow([
+            'Code',
+            'Funcionário',
+            'Motivo',
+            'Rest. Func',
+            'Horas'
+        ])
+        for time in overtime_rest:
+            writer.writerow([
+                time.pk,
+                time.employee,
+                time.reason,
+                time.employee.overtime_total,
+                time.hours,
+            ])
+
+        return response
+
+
+class OverTimeExportExcel(View):
+    def get(self, request):
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="relatório.xls"'
+
+        wb = xlwt.Workbook(encoding='utf-8')
+        ws = wb.add_sheet('Banco de Horas')
+
+        font_style = xlwt.XFStyle()
+        font_style.font.bold = True
+
+        row_num = 0
+        columns = [
+            'Code',
+            'Funcionário',
+            'Motivo',
+            'Rest. Func',
+            'Horas'
+        ]
+
+        for col_num in range(len(columns)):
+            ws.write(row_num, col_num, columns[col_num], font_style)
+
+        font_style = xlwt.XFStyle()
+
+        times = OverTime.objects.filter(is_hours=True)
+
+        row_num = 1
+        for time in times:
+            ws.write(row_num, 0, str(time.pk), font_style)
+            ws.write(row_num, 1, time.employee.name, font_style)
+            ws.write(row_num, 2, time.reason, font_style)
+            ws.write(row_num, 3, time.employee.overtime_total, font_style)
+            ws.write(row_num, 4, time.hours, font_style)
+            row_num += 1
+
+        wb.save(response)
+        return response

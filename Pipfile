@@ -43,6 +43,7 @@ typing-extensions = "==3.7.4.3"
 urllib3 = "==1.25.8"
 webencodings = "==0.5.1"
 xhtml2pdf = "*"
+xlwt = "*"
 
 [dev-packages]
 
