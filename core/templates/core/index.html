@@ -4,13 +4,16 @@
 {% block content %}
 <div class="row">
     <div class="col-sm">
-        One of tree columns
+        <div class="col-sm">
+            <p><a href="{% url 'reports:pdf_report_lab' %}">Gerenciar PDF Report Lab</a></p>
+        </div>
     </div>
     <div class="col-sm">
         <p>Olá, {{user.employee.name}}</p>
         <p><a href="{% url 'employees:list' %}">Gerenciar Funcionários</a></p>
         <p><a href="{% url 'departments:list' %}">Gerenciar Departamentos</a></p>
         <p><a href="{% url 'overtime:list' %}">Gerenciar Banco de Horas</a></p>
+        <p><a href="{% url 'reports:pdf_report_lab' %}">Gerenciar PDF Report Lab</a></p>
     </div>
     <div class="col-sm">
         <a href="{% url 'logout' %}">Logout</a>
