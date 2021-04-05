@@ -1,19 +1,29 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
+{% load static %}
 
 {% block content %}
 <form method='POST'>
     {% csrf_token %}
     {{ form|bootstrap }}
-    <button type="submit">Salvar</button>
+    <br>
+    <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
-
+<br>
 {% if object %}
+<p>
     <a href="{% url 'overtime:delete' object.pk %}" class="btn btn-danger">Deletar</a>
+    <button type="button" onclick="userOverTime('{{ object.pk }}')" class="btn btn-info">Baixa Hora Extra</button>
+</p>
 {% endif %}
 
-
-
+<p id='message'></p>
 
 
 {% endblock content %}
+
+
+{% block js %}
+<script src="{% static 'js/jquery-3.6-compressed.js' %}"></script>
+<script src="{% static 'js/overtime_js/functions.js' %}"></script>
+{% endblock js %}

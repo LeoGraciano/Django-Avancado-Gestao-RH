@@ -1,6 +1,8 @@
+from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
+from django.views.generic.base import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import OverTime
 from .forms import OverTimeForm
@@ -66,3 +68,9 @@ class OverTimeCreateView(CreateView):
             kwargs.update({'instance': self.object})
             kwargs.update({'employee': self.request.user.employee})
         return kwargs
+
+
+class UserOverTimeView(View):
+    def post(self, *args, **kwargs):
+        response = {'message': 'Requisição executada com sucesso'}
+        return JsonResponse(response)
