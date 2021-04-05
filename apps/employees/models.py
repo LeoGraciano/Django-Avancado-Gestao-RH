@@ -26,7 +26,9 @@ class Employee(BaseModelField):
 
     @property
     def overtime_total(self):
-        return self.overtime_set.aggregate(Sum('hours'))['hours__sum']
+        total = self.overtime_set.exclude(
+            is_hours=False).aggregate(Sum('hours'))['hours__sum']
+        return total or 0
 
     class meta:
         ordering = 'name'

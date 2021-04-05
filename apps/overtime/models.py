@@ -11,6 +11,7 @@ class OverTime(BaseModelField):
     employee = models.ForeignKey(
         Employee, on_delete=models.PROTECT, verbose_name='Funcionário')
     hours = models.DecimalField(max_digits=5, decimal_places=2)
+    is_hours = models.BooleanField(default=True, editable=False)
 
     def __str__(self):
         return self.reason

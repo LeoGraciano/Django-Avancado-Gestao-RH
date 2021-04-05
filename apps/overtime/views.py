@@ -72,5 +72,18 @@ class OverTimeCreateView(CreateView):
 
 class UserOverTimeView(View):
     def post(self, *args, **kwargs):
-        response = {'message': 'Requisição executada com sucesso'}
+        register_overtime = OverTime.objects.get(pk=kwargs['pk'])
+        params = self.request.POST['params_recovery']
+        if params == 'up':
+            register_overtime.is_hours = True
+        else:
+            register_overtime.is_hours = False
+        register_overtime.save(update_fields=['is_hours'])
+        employee = register_overtime.employee
+        response = {
+            'message': 'Requisição executada com sucesso',
+            'bank_hours': f'Saldo atual de {employee.overtime_total} horas restante agora',
+
+        }
+
         return JsonResponse(response)

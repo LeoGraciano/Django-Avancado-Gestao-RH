@@ -35,14 +35,19 @@
 <ul>
     {% for time in object.overtime_set.all %}
     <p>
+
+        {% if time.is_hours %}
             <li><a href="{% url 'overtime:update_return_employee' time.pk %}">{{time.reason}} | {{time.hours}}</a></li>
+
+        {% endif %}
+
 
     </p>
     {% endfor %}
 </ul>
 <br>
-<h3>Total de Toras Extra {{object.overtime_total}}</h3>
 
+<h3>Saldo de Horas Extra: {{object.overtime_total}}</h3>
 
 
 {% endblock content %}

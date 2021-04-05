@@ -7,15 +7,16 @@
     {% csrf_token %}
     {{ form|bootstrap }}
     <br>
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <p>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        {% if object %}
+        <a href="{% url 'overtime:delete' object.pk %}" class="btn btn-danger">Deletar</a>
+        <button type="button" onclick="userOverTime('{{ object.pk }}')" class="btn btn-info">Baixa Hora Extra</button>
+        <button type="button" onclick="userOverTime('{{ object.pk }}','up')" class="btn btn-primary">Restaura Hora Extra</button>
+
+        {% endif %}
+    </p>
 </form>
-<br>
-{% if object %}
-<p>
-    <a href="{% url 'overtime:delete' object.pk %}" class="btn btn-danger">Deletar</a>
-    <button type="button" onclick="userOverTime('{{ object.pk }}')" class="btn btn-info">Baixa Hora Extra</button>
-</p>
-{% endif %}
 
 <p id='message'></p>
 

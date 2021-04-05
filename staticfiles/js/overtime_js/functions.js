@@ -1,18 +1,21 @@
-function userOverTime(pk) {
-    console.log(pk)
+function userOverTime(pk,params=null) {
     token = document.getElementsByName('csrfmiddlewaretoken')[0].value;
-
     $.ajax({
         type: 'POST',
         url: `/overtime/user-overtime/${pk}`,
         data: {
-            csrfmiddlewaretoken: token
+            csrfmiddlewaretoken: token,
+            'params_recovery': params
         },
-        success: function (result) {
+        success: function (response) {
             console.log('Sucesso!!!')
-            if (result['message']) {
-                $("#message").text(result['message'])
+            var message = document.getElementById('message')
+            if (response['message']) {
+                message.innerHTML = response['message'] +'<br>'
             };
+            if (response['bank_hours']) {
+                message.innerHTML += response['bank_hours']
+            }
         }
     })
 
