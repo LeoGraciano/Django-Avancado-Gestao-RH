@@ -1,14 +1,16 @@
 from django.http.response import HttpResponse
+from django.views.generic.base import View
 from django.shortcuts import render
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
 import io
 from apps.employees.models import Employee
-
+from django.template.loader import get_template
+import xhtml2pdf.pisa as pisa
 # Create your views here.
 
 
-def pdf_report_lab(request):
+def report_employees(request):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="relatório.pdf"'
     # Create a file-like buffer to receive PDF data.
@@ -47,3 +49,34 @@ def pdf_report_lab(request):
     response.write(pdf)
 
     return response
+
+
+class Render:
+
+    @staticmethod
+    def render(path: str, params: dict, filename: str):
+        template = get_template(path)
+        html = template.render(params)
+        response = io.BytesIO()
+        pdf = pisa.pisaDocument(
+            io.BytesIO(html.encode("UTF-8")), response
+        )
+        if not pdf.err:
+            response = HttpResponse(
+                response.getvalue(), content_type='application/pdf')
+            response['Content-Disposition'] = f'attachment; filename={filename}.pdf'
+            return response
+        else:
+            response = HttpResponse(
+                "Erro ao Renderelizar o PDF", status_code=400)
+
+
+class PDF(View):
+
+    def get(self, request):
+        params = {
+            'today': 'Variavel today',
+            'sales': 'Variavel salves',
+            'request': request,
+        }
+        return Render.render('employees/report_employees.html', params, 'my_file')

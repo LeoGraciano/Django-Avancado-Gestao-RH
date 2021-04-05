@@ -42,8 +42,12 @@ typed-ast = "==1.4.2"
 typing-extensions = "==3.7.4.3"
 urllib3 = "==1.25.8"
 webencodings = "==0.5.1"
+xhtml2pdf = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

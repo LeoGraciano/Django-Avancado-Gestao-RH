@@ -5,8 +5,10 @@
 
 {% for employee in object_list %}
 
-<p><a href="{% url 'employees:update' employee.pk %} ">{{employee}}</a>
-    <a href="{% url 'employees:delete' employee.pk %} " class="btn btn-danger">Excluir</a></p>
+<p>
+    <a href="{% url 'employees:update' employee.pk %} ">{{employee}}</a>
+    <a href="{% url 'employees:delete' employee.pk %} " class="btn btn-danger">Excluir</a>
+</p>
 
 
 
@@ -14,6 +16,19 @@
 {% endfor %}
 
 
-<a href="{% url 'employees:new' %} " class="btn btn-info">Criar Funcionário</a>
+<p>
+    <a href="{% url 'employees:new' %} " class="btn btn-info">Criar Funcionário</a>
+</p>
+
+<p>
+    <a href="{% url 'reports:pdf_report_lab' %}" class="btn btn-primary"> Relatórios PDF Report Lab</a>
+</p>
+
+
+<p>
+    <a href="{% url 'reports:pdf_html2pdf' %}" class="btn btn-secondary"> Relatórios PDF xHTML2PDF</a>
+</p>
+
+
 
 {% endblock content %}
