@@ -44,6 +44,9 @@ urllib3 = "==1.25.8"
 webencodings = "==0.5.1"
 xhtml2pdf = "*"
 xlwt = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [dev-packages]
 

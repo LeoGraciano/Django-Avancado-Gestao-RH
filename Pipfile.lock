@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "15a692ee550742732ace917c8683a79ba5706c4fdb46e33725dc8f959d81ccc1"
+            "sha256": "d2778ea07a98c6d633c962643538653e9b4b816aa52ae584a577f325f2bf330e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -118,6 +118,22 @@
             "index": "pypi",
             "version": "==3.4"
         },
+        "django-filter": {
+            "hashes": [
+                "sha256:84e9d5bb93f237e451db814ed422a3a625751cbc9968b484ecc74964a8696b06",
+                "sha256:e00d32cebdb3d54273c48f4f878f898dced8d5dfaad009438fe61ebdf535ace1"
+            ],
+            "index": "pypi",
+            "version": "==2.4.0"
+        },
+        "djangorestframework": {
+            "hashes": [
+                "sha256:6d1d59f623a5ad0509fe0d6bfe93cbdfe17b8116ebc8eda86d45f6e16e819aaf",
+                "sha256:f747949a8ddac876e879190df194b925c177cdeb725a099db1460872f7c0a7f2"
+            ],
+            "index": "pypi",
+            "version": "==3.12.4"
+        },
         "flake8": {
             "hashes": [
                 "sha256:12d05ab02614b6aee8df7c36b97d1a3b2372761222b19b58621355e82acddcff",
@@ -162,6 +178,14 @@
             ],
             "index": "pypi",
             "version": "==0.12.2"
+        },
+        "markdown": {
+            "hashes": [
+                "sha256:31b5b491868dcc87d6c24b7e3d19a0d730d59d3e46f4eea6430a321bed387a49",
+                "sha256:96c3ba1261de2f7547b46a00ea8463832c921d3f9d6aba3f255a6f71386db20c"
+            ],
+            "index": "pypi",
+            "version": "==3.3.4"
         },
         "mccabe": {
             "hashes": [
