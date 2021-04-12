@@ -5,7 +5,6 @@ from django.http.response import HttpResponse
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from rest_framework import viewsets
 from .models import Employee
 from django.contrib.auth.models import User
 from core.utils.tokens import generate_hash_digits_random as random_digits
@@ -57,8 +56,3 @@ class EmployeeUpdateView(UpdateView):
 class EmployeeDeleteView(DeleteView):
     model = Employee
     success_url = reverse_lazy('employees:list')
-
-
-class EmployeeViewSet(viewsets.ModelViewSet):
-    queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
