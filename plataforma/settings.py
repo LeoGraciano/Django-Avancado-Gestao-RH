@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'apps.overtime',
     'apps.documents',
     'apps.reports',
-    'apps.api',
 
 
     'bootstrapform',

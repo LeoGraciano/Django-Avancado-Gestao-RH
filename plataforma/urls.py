@@ -13,6 +13,8 @@ urlpatterns = [
     path('documents/', include('apps.documents.urls', namespace='documents')),
     path('overtime/', include('apps.overtime.urls', namespace='overtime')),
     path('reports/', include('apps.reports.urls', namespace='reports')),
-    path('api/', include('apps.api.urls', namespace='api')),
     path('accounts/', include('django.contrib.auth.urls')),
+
+    # api
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
