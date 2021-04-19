@@ -33,3 +33,4 @@ class Employee(BaseModelField):
 
     class meta:
         ordering = 'name'
+        # app_label = 'employees'

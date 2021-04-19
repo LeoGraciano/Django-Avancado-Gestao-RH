@@ -15,3 +15,6 @@ class OverTime(BaseModelField):
 
     def __str__(self):
         return self.reason
+
+    # class Meta:
+    #     app_label = 'overtime'

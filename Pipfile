@@ -52,6 +52,8 @@ django-celery-results = "*"
 redis = "*"
 install = "*"
 django-celery-beat = "*"
+psycopg2-binary = "*"
+python-decouple = "*"
 
 [dev-packages]
 

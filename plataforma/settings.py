@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 import os
 from pathlib import Path
+from typing import cast
+import psycopg2
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sy3z7=qhunl^h^wz63q@&%yv*@#9kauwrupr#ynzxv^5xbr)4e'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['54.207.167.9', 'localhost']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [
+                       s.strip() for s in v.split(',')])
 
 
 # Application definition
@@ -46,6 +50,7 @@ INSTALLED_APPS = [
     'apps.overtime',
     'apps.documents',
     'apps.reports',
+    'apps.app_old',
 
 
     'bootstrapform',
@@ -92,10 +97,25 @@ WSGI_APPLICATION = 'plataforma.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': config('DEFAULT_ENGINE'),
+        'NAME': config('DEFAULT_NAME'),
+        'USER': config('DEFAULT_USER'),
+        'PASSWORD': config('DEFAULT_PASSWORD'),
+        'HOST': config('DEFAULT_HOST'),
+        'PORT': config('DEFAULT_PORT', cast=int)
+    },
+    # 'postgres': {
+    'antigo': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'NAME': BASE_DIR / 'db_antigo.sqlite3',
+    },
 }
+
+DATABASE_ROUTERS = [
+    'plataforma.DBRoutes.DBRoutesDefault',
+    'plataforma.DBRoutes.DBRoutesAntigo',
+]
+
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
