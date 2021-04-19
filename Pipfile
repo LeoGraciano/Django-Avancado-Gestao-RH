@@ -50,6 +50,8 @@ django-filter = "*"
 celery = "*"
 django-celery-results = "*"
 redis = "*"
+install = "*"
+django-celery-beat = "*"
 
 [dev-packages]
 
