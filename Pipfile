@@ -47,6 +47,8 @@ xlwt = "*"
 djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
+celery = "*"
+django-celery-results = "*"
 
 [dev-packages]
 
