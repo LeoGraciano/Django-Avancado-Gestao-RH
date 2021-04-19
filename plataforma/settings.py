@@ -104,7 +104,6 @@ DATABASES = {
         'HOST': config('DEFAULT_HOST'),
         'PORT': config('DEFAULT_PORT', cast=int)
     },
-    # 'postgres': {
     'antigo': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db_antigo.sqlite3',
