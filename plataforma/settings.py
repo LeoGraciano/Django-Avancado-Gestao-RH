@@ -173,3 +173,18 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'America/Sao_Paulo'
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# EMAIL_HOST=smtp.gmail.com
+# EMAIL_HOST_USER=
+# EMAIL_HOST_PASSWORD=
+# EMAIL_PORT=
+# EMAIL_USE_SSL=
+# EMAIL_ADMINISTRATOR=
+# EMAIL_SUPPORT=
+# CONTACT_EMAIL=
+# DEFAULT_FROM_EMAIL =
+# CONTACT_EMAIL=
+# INVITE_HOST='http://localhost:8000'

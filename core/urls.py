@@ -17,4 +17,7 @@ urlpatterns = [
     # API
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
+
+    # celery
+    path('celery/', views.celery, name='celery')
 ]
